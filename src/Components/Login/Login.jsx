@@ -5,8 +5,8 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault()
-        const email = e.target.email.value
-        const password = e.target.password.value
+        // const email = e.target.email.value
+        // const password = e.target.password.value
     }
     return (
 

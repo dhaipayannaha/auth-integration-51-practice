@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router';
+import { AuthContext } from '../../Context/AuthContext';
 
 const Login = () => {
 
+    const {signIn} = use(AuthContext)
+
     const handleLogin = (e) => {
         e.preventDefault()
-        // const email = e.target.email.value
-        // const password = e.target.password.value
+        const email = e.target.email.value
+        const password = e.target.password.value
+
+        signIn(email, password)
+        .then(result => {
+            console.log(result.user);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+
+
     }
     return (
 

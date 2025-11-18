@@ -8,15 +8,24 @@ const Navbar = () => {
     // const userInfo = use(AuthContext)
     // console.log(userInfo);
 
-    const {user} = use(AuthContext)
+    const { user, signOutUser } = use(AuthContext)
+
+    const handleSignOut = () => {
+        signOutUser()
+    }
 
 
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/login'>Login</NavLink></li>
         <li><NavLink to='/register'>Register</NavLink></li>
-        <li><NavLink to='/order'>Order</NavLink></li>
+        <li><NavLink to='/dashBoard'>DashBoard</NavLink></li>
+        {
+           user && <>
+           <li><NavLink to='/order'>Order</NavLink></li>
         <li><NavLink to='/profile'>Profile</NavLink></li>
+           </>
+        }
     </>
     return (
         <div className="navbar bg-base-100 shadow-sm">
@@ -44,9 +53,12 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 {
-                    user ? <a className="btn">Sign Out</a> : <Link to ='/login'>login</Link>
+                    user ? <>
+                    <p>{user.email}</p>
+                    <a onClick={handleSignOut} className="btn">Sign Out</a>
+                    </> : <Link to='/login'>login</Link>
                 }
-                
+
             </div>
         </div>
     );
